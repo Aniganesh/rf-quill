@@ -155,7 +155,8 @@ var RichTextEditor = function (props) {
     var quillRef = React.useRef(null);
     var name = fieldProps.name;
     var value = _.get(formikProps, "values." + name) || '';
-    var errorText = reactForms.getFieldError(name, formikProps);
+    // const errorText = getFieldError(name, formikProps);
+    var errorText = _.get(formikProps, "errors." + name);
     var showColorPicker = function (value) {
         var _a;
         var quill = (_a = quillRef.current) === null || _a === void 0 ? void 0 : _a.getEditor();

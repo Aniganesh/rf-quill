@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { getFieldError, attachField } from 'react-forms';
+import { attachField } from 'react-forms';
 import { InputLabel, FormHelperText } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import _ from 'lodash';
@@ -147,7 +147,8 @@ var RichTextEditor = function (props) {
     var quillRef = useRef(null);
     var name = fieldProps.name;
     var value = _.get(formikProps, "values." + name) || '';
-    var errorText = getFieldError(name, formikProps);
+    // const errorText = getFieldError(name, formikProps);
+    var errorText = _.get(formikProps, "errors." + name);
     var showColorPicker = function (value) {
         var _a;
         var quill = (_a = quillRef.current) === null || _a === void 0 ? void 0 : _a.getEditor();

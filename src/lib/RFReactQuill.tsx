@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { FormikProps } from 'formik';
 import _ from 'lodash';
 import React, { FC, useEffect, useRef } from 'react';
-import { getFieldError, IFieldProps } from 'react-forms';
+import { IFieldProps } from 'react-forms';
 import ReactQuill, { Quill } from 'react-quill';
 import "react-quill/dist/quill.snow.css";
 import QuillToolbar, { getQuillModule } from './QuillToolbar';
@@ -43,7 +43,8 @@ const RichTextEditor: FC<RichTextEditorProps> = (props) => {
 
 	const { name } = fieldProps;
 	const value = _.get(formikProps, `values.${name}`) || '';
-	const errorText = getFieldError(name, formikProps);
+	// const errorText = getFieldError(name, formikProps);
+	const errorText = _.get(formikProps, `errors.${name}`);
 
 	const showColorPicker = (value: any) => {
 		const quill = quillRef.current?.getEditor();
